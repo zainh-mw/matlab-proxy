@@ -3,11 +3,11 @@
 
 ----
 
-Use this Python® package `matlab-proxy` to start MATLAB® and access it from a web browser.
+Use the `matlab-proxy` Python® package to start MATLAB® and use it in your web browser.
 
-Install this package to create an executable `matlab-proxy-app`, which starts MATLAB and provides you a URL to access it. 
+Install the package to create an executable named `matlab-proxy-app`, which starts MATLAB and provides you a URL for accessing it. 
  
-MATLAB Proxy is under active development. For support or to report issues, see [Feedback](#feedback).
+This package is under active development. To request technical support or to report issues, see [Feedback](#feedback).
 
 ----
 
