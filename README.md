@@ -3,9 +3,9 @@
 
 ----
 
-Use the `matlab-proxy` Python® package to start MATLAB® and use it in your web browser.
+Use MATLAB® in your web browser with the `matlab-proxy` Python® package.
 
-Install the package to create an executable named `matlab-proxy-app`, which starts MATLAB and provides you a URL for accessing it. 
+Install the package to create an executable named `matlab-proxy-app`, which starts MATLAB and provides you a URL to access it. 
  
 This package is under active development. To request technical support or to report issues, see [Feedback](#feedback).
 
@@ -29,9 +29,19 @@ This package is under active development. To request technical support or to rep
   which matlab
   ```  
 * The dependencies required to run MATLAB.
-  For details, refer to the Dockerfiles in the [matlab-deps](https://github.com/mathworks-ref-arch/container-images/tree/master/matlab-deps) repository for your desired version of MATLAB.
+  For details, see the Dockerfiles in the [matlab-deps](https://github.com/mathworks-ref-arch/container-images/tree/master/matlab-deps) repository for your desired version of MATLAB.
+
+* Python versions: **3.8** | **3.9**  | **3.10** | **3.11**
+* [Browser Requirements](https://www.mathworks.com/support/requirements/browser-requirements.html)
+* Supported Operating Systems:
+    * Linux®
+    * Windows® Operating System ( starting v0.4.0 of matlab-proxy )
+    * MacOS (starting v0.5.0 of matlab-proxy )    
+
+  For details, see [Platform Support](#platform-support). 
+
   
-* X Virtual Frame Buffer (Xvfb) (only for Linux® based systems):
+* X Virtual Frame Buffer (Xvfb) (for Linux® based systems):
 
   Installing Xvfb is optional (starting v0.11.0 of matlab-proxy) but highly recommended. Xvfb enables graphical abilities like plots and figures in the MATLAB desktop. 
   To install Xvfb on your Linux machine, use:
@@ -51,7 +61,7 @@ This package is under active development. To request technical support or to rep
 
 * Fluxbox Window Manager (only for Linux® based systems):
 
-  Installing fluxbox is optional but required to use Simulink Online.
+  Installing fluxbox is optional but required for using Simulink Online.
 
   Install fluxbox using:
   ```bash
@@ -59,13 +69,6 @@ This package is under active development. To request technical support or to rep
   $ sudo apt install fluxbox 
   ```
 
-* Python versions: **3.8** | **3.9**  | **3.10** | **3.11**
-* [Browser Requirements](https://www.mathworks.com/support/requirements/browser-requirements.html)
-* Supported Operating Systems:
-    * Linux®
-    * Windows® Operating System ( starting v0.4.0 of matlab-proxy )
-    * MacOS (starting v0.5.0 of matlab-proxy )    
-See [Platform Support](#platform-support) for more information 
 
 ## Installation
 
