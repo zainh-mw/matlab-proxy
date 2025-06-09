@@ -101,7 +101,6 @@ which matlab-proxy-app
 After you install the `matlab-proxy` package:
 
 1. Open a terminal and start `matlab-proxy-app`. 
-  
   ```bash
   # On Linux:
   env MWI_BASE_URL="/matlab" matlab-proxy-app
@@ -110,10 +109,10 @@ After you install the `matlab-proxy` package:
   For details about customizing MATLAB Proxy behaviour using environment variables, see [Advanced Usage](./Advanced-Usage.md).
 
   Run the command above to print text on your terminal, which shows the URL to access MATLAB. For example:
-  ```
-  Access MATLAB at 
-  http://localhost:44549/matlab/index.html
-  ```
+```
+Access MATLAB at 
+http://localhost:44549/matlab/index.html
+```
 
 2. Open the link in a web browser. If prompted, enter credentials for a MathWorks account associated with a MATLAB license. If you use a network license manager, change to the _Network License Manager_ tab and enter the license server address instead. If you already have an activated MATLAB, you can use the _Existing License_ option to start MATLAB without authenticating every time.
 For details about choosing the license type, see [MATLAB Licensing Information](./MATLAB-Licensing-Info.md).
