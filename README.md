@@ -202,7 +202,7 @@ Using the latest version will provide the latest available security updates or p
 
 MathWorks encourages you to try this package in your environment and provide feedback. 
 
-To request technical support or submit an enhancement request, create an issue [here](https://github.com/mathworks/matlab-proxy/issues)
+To request technical support or submit an enhancement request, [Create an Issue (Github)](https://github.com/mathworks/matlab-proxy/issues).
 
 ---
 
