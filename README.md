@@ -42,7 +42,7 @@ MathWorks® is actively developing this package. To request technical support or
   - The [MATLAB Dependencies](https://github.com/mathworks-ref-arch/container-images/tree/main/matlab-deps) repository contains `base-dependencies.txt` files that list the libraries required to run each release of MATLAB on a given operating system. To see how to use these files, refer to the Dockerfiles in the same folder.
 
 
-* Most modern web browsers: for details, see [Browser Requirements (MathWorks)](https://www.mathworks.com/support/requirements/browser-requirements.html).
+* Most modern web browsers are compatible. For details, see [Browser Requirements (MathWorks)](https://www.mathworks.com/support/requirements/browser-requirements.html).
   
 * X Virtual Frame Buffer (Xvfb) (for Linux® based systems):
 
