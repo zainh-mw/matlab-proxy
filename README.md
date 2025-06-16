@@ -26,10 +26,12 @@ MathWorks® is actively developing this package. To request technical support or
 ## Requirements
 
 * Supported Operating Systems:
-    * [Linux®](#linux)
-    * [Windows® Operating System](#windows) (starting [v0.4.0](https://github.com/mathworks/matlab-proxy/releases/tag/v0.4.0))
-    * [Windows Subsystem for Linux (WSL 2)](#windows-subsystem-for-linux-wsl-2)
-    * [MacOS](#macos) (starting [v0.5.0](https://github.com/mathworks/matlab-proxy/releases/tag/v0.4.0))     
+    * Linux®
+    * Windows® Operating System (starting [v0.4.0](https://github.com/mathworks/matlab-proxy/releases/tag/v0.4.0))
+    * Windows Subsystem for Linux (WSL 2)
+    * MacOS (starting [v0.5.0](https://github.com/mathworks/matlab-proxy/releases/tag/v0.4.0))
+
+    For instructions specific to each of these operating systems, see the section on [Platform Support]((#platform-support)).
 
 * Python versions: 3.8 | 3.9  | 3.10 | 3.11
 
@@ -181,7 +183,7 @@ $ pip install --upgrade matlab-proxy>=0.5.0
 
 ### Windows Subsystem for Linux (WSL 2)
 
-To install `matlab-proxy` in WSL 2, follow the steps mentioned in the [Installation Guide for WSL 2](./install_guides/wsl2/README.md).
+To install `matlab-proxy` on WSL 2, see the [Installation Guide for WSL 2](./install_guides/wsl2/README.md).
 
 
 ## Limitations
