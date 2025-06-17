@@ -2,7 +2,20 @@
 
 This page shows how to customize the behaviour of the `matlab-proxy` app using advanced settings.
 
-## Environment Variables
+
+----
+
+**Table of Contents**
+- [Customize Environment Variables](#customize-environment-variables)
+- [Shutdown on Idle](#shutdown-on-idle)
+- [Add MATLAB to System Path](#add-matlab-to-system-path)
+- [Customize MATLAB Root](#customize-matlab-root)
+- [Platform Support](#platform-support)
+- [Limitations](#limitations)
+- [Security](#security)
+- [Feedback](#feedback)
+
+## Customize Environment Variables
 
 To control the behavior of MATLAB Proxy, you can use the environment variables described in this section. You must specify these variables before starting the app. For example, to specify a network license server when you start the app, using the command below:
 
@@ -28,10 +41,10 @@ The following table describes all the environment variables that you can set to 
 | **MWI_SSL_KEY_FILE** | string | `"/path/to/keyfile.key"` | The keyfile string, if present, must point to a file containing the private key. Otherwise, the private key is taken from certfile as well. |
 | **MWI_ENABLE_TOKEN_AUTH** | string | `"True"` | When you set the variable to `True`, matlab-proxy requires users to provide the security token to access the proxy. Optionally, set the token using the environment variable `MWI_AUTH_TOKEN`. If you do not specify `MWI_AUTH_TOKEN`, the software generates a token for you. <br />For more information, see [Token-Based Authentication](./SECURITY.md#token-based-authentication).
 | **MWI_AUTH_TOKEN** | string (optional) | `"AnyURLSafeToken"` | Specify a custom `token` for matlab-proxy to use with [Token-Based Authentication](./SECURITY.md#token-based-authentication). A token can contain any combination of alpha numeric text along with the following permitted characters: `- .  _  ~`.<br />When not specified, matlab-proxy will generate a random URL-safe token. |
-| **MWI_USE_EXISTING_LICENSE** | string (optional) | `"True"` | When set to `True`, matlab-proxy will not ask you for additional licensing information and will try to launch an already activated MATLAB on your system PATH.
-| **MWI_CUSTOM_MATLAB_ROOT** | string (optional) | `"/path/to/matlab/root/"` | Optionally, provide a custom path to MATLAB root. For more information see [Adding MATLAB to System Path](#adding-matlab-to-system-path) |
+| **MWI_USE_EXISTING_LICENSE** | string (optional) | `"True"` | When set to `True`, matlab-proxy will not ask you for additional licensing information and will try to start an already activated MATLAB on your system PATH.
+| **MWI_CUSTOM_MATLAB_ROOT** | string (optional) | `"/path/to/matlab/root/"` | Optionally, provide a custom path to MATLAB root. For more information, see [Add MATLAB to System Path](#add-matlab-to-system-path) |
 | **MWI_PROCESS_START_TIMEOUT** | integer (optional) | `1234` |  Defines the duration (in seconds) that `matlab-proxy` waits for the processes it starts, namely MATLAB & Xvfb, to respond. Default value is `600`. A timeout either indicates an issue with the spawned processes or be a symptom of a resource-constrained environment. Increase this value if your environment needs more time for the spawned processes to start.|
-| **MWI_MATLAB_STARTUP_SCRIPT** | string (optional) | `"addpath('/path/to/a/folder'), c=12"` | Run custom code, specified as a string, at startup. For detailed instructions, see [Run Custom MATLAB Startup Code](#run-custom-matlab-startup-code). |
+| **MWI_MATLAB_STARTUP_SCRIPT** | string (optional) | `"addpath('/path/to/a/folder'), c=12"` | Run custom code at startup, specified as a string. For detailed instructions, see [Run Custom MATLAB Startup Code](#run-custom-matlab-startup-code). |
 | **MWI_SHUTDOWN_ON_IDLE_TIMEOUT** | integer (optional) | 60 | Defines the duration, in minutes, that `matlab-proxy` remains idle before shutting down. If you do not set the variable, `matlab-proxy` does not shut down when idle. For details, see [Shutdown on Idle](#shutdown-on-idle). |
 
 ## Shutdown on Idle
@@ -51,9 +64,9 @@ Use this environment variable to clean up idle system resources.
 
 
 
-## Adding MATLAB to System Path
+## Add MATLAB to System Path
 
-When `matlab-proxy` starts, it expects the `matlab` executable to be present on  system PATH in the environment from which it was spawned. If unable to find `matlab` on the path, `matlab-proxy` will error.
+When `matlab-proxy` starts, it expects the `matlab` executable to be present on system PATH in the environment from which it was spawned. If unable to find `matlab` on the path, `matlab-proxy` will error.
 
 Add MATLAB to the system PATH using the following commands:
 ```bash
@@ -71,7 +84,7 @@ On MacOS: /Applications/MATLAB_R2023a.app
 On Windows: C:\Program Files\MATLAB\R2023a
 ```
 
-### Custom MATLAB Root
+### Customize MATLAB Root
 
 To specify the location of `MATLAB_ROOT`, use the environment variable `MWI_CUSTOM_MATLAB_ROOT`.
 
