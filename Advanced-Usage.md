@@ -127,7 +127,7 @@ If you add the `frame-ancestors` directive, the browser does not block the conte
 
 `matlab-proxy` support for proxies is based on the support available for proxies in the `aiohttp` package. For details, see [AIOHTTP Proxy Support](https://docs.aiohttp.org/en/stable/client_advanced.html#proxy-support).
 
-`matlab-proxy` has configured its usage of `aiohttp` to honor the environment variables that are used to configure proxy environments, namely `http_proxy, https_proxy, no_proxy`. However, `matlab-proxy` uses HTTP(S) to communicate with several processes, including MATLAB on the machine where it is running, and will automatically add the following values into the `no_proxy` environment variable:
+`matlab-proxy` has configured its use of `aiohttp` to honor the environment variables that are used to configure proxy environments, namely `http_proxy, https_proxy, no_proxy`. However, `matlab-proxy` uses HTTP(S) to communicate with several processes, including MATLAB on the machine where it is running, and will automatically add the following values into the `no_proxy` environment variable:
 1. localhost
 1. 0.0.0.0
 1. 127.0.0.1

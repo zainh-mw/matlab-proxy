@@ -1,5 +1,5 @@
-# Copyright (c) 2020-2022 The MathWorks, Inc.
-# This Dockerfile showcases how to upgrade the matlab-proxy python package 
+# Copyright (c) 2020-2025 The MathWorks, Inc.
+# This Dockerfile shows how to upgrade the matlab-proxy python package 
 # in an existing container image which has both MATLAB and matlab-proxy installed
 
 # Sample build command:

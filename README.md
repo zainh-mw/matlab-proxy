@@ -17,7 +17,7 @@ MathWorks® is actively developing this package. To request technical support or
   - [PyPI](#pypi)
   - [Building From Sources](#building-from-sources)
 - [Run MATLAB in Browser](#run-matlab-in-browser)
-- [Examples](#examples)
+- [Example Workflows](#example-workflows)
 - [Platform Support](#platform-support)
 - [Limitations](#limitations)
 - [Security](#security)
@@ -150,10 +150,9 @@ You see these options in the status panel:
 | Feedback | Provide feedback. Opens a new tab to create an issue on GitHub.|
 | Help | Show details of the options mentioned above.|
 
-## Examples
-* For installing/usage in a Docker container, see this [Dockerfile](./examples/Dockerfile) and its [README](./examples/README.md).
-* For upgrading **matlab-proxy** in an existing Docker image, see this [Dockerfile.upgrade.matlab-proxy](./examples/Dockerfile.upgrade.matlab-proxy) and its [README](./examples/README.md#upgrading-matlab-proxy-package-in-a-docker-image).
-* For usage in a Jupyter environment, see [jupyter-matlab-proxy](https://github.com/mathworks/jupyter-matlab-proxy).
+## Example Workflows
+* To install and use `matlab-proxy` in a Docker container, see [Use MATLAB Proxy in a Docker Container](./examples/README.md). To upgrade `matlab-proxy` in an existing Docker image, see the section [Update MATLAB Proxy in a Docker Image](./examples/README.md#update-matlab-proxy-package-in-a-docker-image).
+* To use MATLAB in a browser from a Jupyter environment such as JupyterLab or Jupyter notebook, see [Jupyter MATLAB Proxy](https://github.com/mathworks/jupyter-matlab-proxy#open-matlab-in-a-browser).
 
 ## Platform Support
 
@@ -205,6 +204,8 @@ Using the latest version will provide the latest available security updates or p
 MathWorks encourages you to try this package in your environment and provide feedback. 
 
 To request technical support or submit an enhancement request, [Create an Issue (Github)](https://github.com/mathworks/matlab-proxy/issues).
+
+
 
 ---
 
