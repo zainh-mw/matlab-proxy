@@ -117,7 +117,7 @@ http://localhost:44549/matlab/index.html
 ```
 
 2. Open the link in a web browser. If prompted, enter credentials for a MathWorks account associated with a MATLAB license. If you use a network license manager, change to the _Network License Manager_ tab and enter the license server address instead. If you already have an activated MATLAB, you can use the _Existing License_ option to start MATLAB without authenticating every time.
-For details about choosing the license type, see [MATLAB Licensing Information](./MATLAB-Licensing-Info.md).
+For details about choosing the license type, see [MATLAB Licensing Information](./MATLAB-Licensing-Information.md).
 <p align="center">
   <img width="400" src="https://github.com/mathworks/matlab-proxy/raw/main/img/licensing_GUI.png">
 </p>
@@ -192,18 +192,13 @@ This package supports the same set of MATLAB features and commands as MATLAB® O
 Simulink Online is supported exclusively on Linux platforms starting from MATLAB R2024b.
 
 ## Security
-We take your security concerns seriously, and will attempt to address all concerns.
-`matlab-proxy` uses several other python packages, and depend on them to fix their own vulnerabilities.
-
-All security patches will be released as a new version of the package.
-Patches are never backported to older versions or releases of the package.
-Using the latest version will provide the latest available security updates or patches.
+The `matlab-proxy` package uses several other Python packages, and relies on these packages to address their vulnerabilities. Security patches for `matlab-proxy` are released as new versions of the package. Patches are never backported to older versions. Use the latest version of the package for the latest security updates.
 
 ## Feedback
 
 MathWorks encourages you to try this package in your environment and provide feedback. 
 
-To request technical support or submit an enhancement request, [Create an Issue (Github)](https://github.com/mathworks/matlab-proxy/issues).
+To request technical support or submit an enhancement request, [Create a Github Issue](https://github.com/mathworks/matlab-proxy/issues).
 
 
 

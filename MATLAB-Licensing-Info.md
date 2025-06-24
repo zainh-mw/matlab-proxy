@@ -1,4 +1,4 @@
-# MATLAB Licensing Info
+# MATLAB Licensing Information
 
 
 **Table of Contents:**
