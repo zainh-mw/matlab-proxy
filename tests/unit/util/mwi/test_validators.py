@@ -1,4 +1,4 @@
-# Copyright 2020-2025 The MathWorks, Inc.
+# Copyright 2020-2026 The MathWorks, Inc.
 
 """Tests for functions in matlab_proxy/util/mwi_validators.py"""
 
@@ -6,22 +6,23 @@ import os
 import random
 import socket
 import tempfile
-from matlab_proxy.util.mwi.validators import (
-    validate_idle_timeout,
-    validate_matlab_root_path,
-)
-from matlab_proxy import constants
 from pathlib import Path
 
-import matlab_proxy
 import pytest
+
+import matlab_proxy
+from matlab_proxy import constants
 from matlab_proxy.util import system
 from matlab_proxy.util.mwi import environment_variables as mwi_env
 from matlab_proxy.util.mwi import validators
 from matlab_proxy.util.mwi.exceptions import (
-    NetworkLicensingError,
     FatalError,
     MatlabInstallError,
+    NetworkLicensingError,
+)
+from matlab_proxy.util.mwi.validators import (
+    validate_idle_timeout,
+    validate_matlab_root_path,
 )
 
 
@@ -123,7 +124,7 @@ def test_validate_mlm_license_file_valid_license_file_path(
 def test_validate_mlm_license_file_for_valid_nlm_string(MLM_LICENSE_FILE, monkeypatch):
     """Check if port@hostname passes validation"""
 
-    seperator = system.get_mlm_license_file_seperator()
+    seperator = system.get_mlm_license_file_separator()
     MLM_LICENSE_FILE = seperator.join(MLM_LICENSE_FILE)
     env_name = mwi_env.get_env_name_network_license_manager()
     monkeypatch.setenv(env_name, MLM_LICENSE_FILE)

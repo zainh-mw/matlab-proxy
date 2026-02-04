@@ -1,4 +1,4 @@
-# Copyright 2024-2025 The MathWorks, Inc.
+# Copyright 2024-2026 The MathWorks, Inc.
 
 import asyncio
 import os
@@ -42,6 +42,7 @@ def init_app() -> web.Application:
     Returns:
         web.Application: The configured aiohttp web application.
     """
+    mwi_sys.configure_no_proxy_in_env(log)
     app = web.Application()
     # Async event is utilized to signal app termination from this and other modules
     app["shutdown_event"] = asyncio.Event()

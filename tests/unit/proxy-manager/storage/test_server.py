@@ -1,7 +1,8 @@
-# Copyright 2024-2025 The MathWorks, Inc.
+# Copyright 2024-2026 The MathWorks, Inc.
 from pathlib import Path
 
 import pytest
+
 from matlab_proxy_manager.storage.server import ServerProcess
 
 
@@ -29,11 +30,13 @@ def mock_server_process(mocker):
 
 def test_shutdown_success(mocker, server_process):
     mock_response = mocker.MagicMock()
+    mock_proxies = mocker.MagicMock()
     mock_response.json.return_value = {"status": "success"}
     mock_req_retry_session = mocker.patch(
         "matlab_proxy_manager.utils.helpers.requests_retry_session"
     )
     mock_req_retry_session.return_value.delete.return_value = mock_response
+    mock_req_retry_session.return_value.proxies = mock_proxies
 
     shutdown_response = server_process.shutdown()
 
@@ -41,6 +44,7 @@ def test_shutdown_success(mocker, server_process):
     mock_req_retry_session.return_value.delete.assert_called_once_with(
         url="http://localhost:8888/matlab/shutdown_integration",
         headers={"Dummy_header": "Dummy_value"},
+        proxies=mock_proxies,
     )
     assert shutdown_response == {"status": "success"}
 
@@ -49,6 +53,8 @@ def test_shutdown_exception(mocker, server_process):
     mock_req_retry_session = mocker.patch(
         "matlab_proxy_manager.utils.helpers.requests_retry_session"
     )
+    mock_proxies = mocker.MagicMock()
+    mock_req_retry_session.return_value.proxies = mock_proxies
     mock_req_retry_session.return_value.delete.side_effect = Exception(
         "Server unreachable"
     )
@@ -62,6 +68,7 @@ def test_shutdown_exception(mocker, server_process):
     mock_req_retry_session.return_value.delete.assert_called_once_with(
         url="http://localhost:8888/matlab/shutdown_integration",
         headers={"Dummy_header": "Dummy_value"},
+        proxies=mock_proxies,
     )
     assert shutdown_response is None
     mock_psutil_process.return_value.kill.assert_called()

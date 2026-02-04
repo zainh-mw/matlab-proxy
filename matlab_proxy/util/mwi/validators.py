@@ -1,4 +1,4 @@
-# Copyright 2020-2025 The MathWorks, Inc.
+# Copyright 2020-2026 The MathWorks, Inc.
 """This file contains validators for various runtime artifacts.
 A validator is defined as a function which verifies the input and
 returns it unchanged if validation passes.
@@ -77,7 +77,7 @@ def validate_mlm_license_file(nlm_connections_str):
         f" OR path to a valid license file."
     )
 
-    seperator = system.get_mlm_license_file_seperator()
+    seperator = system.get_mlm_license_file_separator()
     nlm_connection_strs = re.split(f"{seperator}|,", nlm_connections_str)
 
     logger.debug(

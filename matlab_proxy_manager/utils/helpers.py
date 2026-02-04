@@ -1,4 +1,4 @@
-# Copyright 2024-2025 The MathWorks, Inc.
+# Copyright 2024-2026 The MathWorks, Inc.
 import asyncio
 import http
 import os
@@ -40,9 +40,12 @@ def is_server_ready(url: Optional[str], retries: int = 2, backoff_factor=None) -
             return False
 
         matlab_proxy_index_page_identifier = "MWI_MATLAB_PROXY_IDENTIFIER"
-        resp = requests_retry_session(
-            retries=retries, backoff_factor=backoff_factor
-        ).get(f"{url}", verify=False)
+        session = requests_retry_session(retries=retries, backoff_factor=backoff_factor)
+        resp = session.get(
+            url=f"{url}",
+            verify=False,
+            proxies=session.proxies,
+        )
         log.debug("Response status code from server readiness: %s", resp.status_code)
         return (
             resp.status_code == http.HTTPStatus.OK
@@ -68,6 +71,7 @@ def requests_retry_session(
         requests.Session: The requests session with retry logic.
     """
     session = session or requests.session()
+    session.proxies.update({"no_proxy": "127.0.0.1,localhost,0.0.0.0"})
     retry = Retry(
         total=retries,
         read=retries,

@@ -1,4 +1,4 @@
-# Copyright 2024-2025 The MathWorks, Inc.
+# Copyright 2024-2026 The MathWorks, Inc.
 import json
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
@@ -90,8 +90,9 @@ class ServerProcess:
         backend_server = self.absolute_url
         url = f"{backend_server}/shutdown_integration"
         try:
-            response = helpers.requests_retry_session(retries=1).delete(
-                url=url, headers=self.headers
+            session = helpers.requests_retry_session(retries=1)
+            response = session.delete(
+                url=url, headers=self.headers, proxies=session.proxies
             )
             shutdown_resp = response.json()
             log.debug("Response from shutdown: %s", response.json())

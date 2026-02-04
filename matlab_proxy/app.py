@@ -1002,33 +1002,13 @@ def create_app(config_name=matlab_proxy.get_default_config_name()):
     return app
 
 
-def configure_no_proxy_in_env():
-    """Update the environment variable no_proxy to allow communication between processes on the local machine."""
-    import os
-
-    no_proxy_whitelist = ["0.0.0.0", "localhost", "127.0.0.1"]
-
-    no_proxy_env = os.environ.get("no_proxy")
-    if no_proxy_env is None:
-        os.environ["no_proxy"] = ",".join(no_proxy_whitelist)
-    else:
-        # Create set with leading and trailing whitespaces stripped
-        existing_no_proxy_env = [
-            val.lstrip().rstrip() for val in no_proxy_env.split(",")
-        ]
-        os.environ["no_proxy"] = ",".join(
-            set(existing_no_proxy_env + no_proxy_whitelist)
-        )
-    logger.debug(f"Setting no_proxy to: {os.environ.get('no_proxy')}")
-
-
 def create_and_start_app(config_name):
     """Creates and start the web server. Will block until the server is interrupted or is shut down
 
     Args:
         config_name (str): Name of the configuration to use with matlab-proxy.
     """
-    configure_no_proxy_in_env()
+    util.system.configure_no_proxy_in_env(logger)
 
     # Create, configure and start the app.
     app = create_app(config_name)

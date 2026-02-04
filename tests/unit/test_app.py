@@ -1,4 +1,4 @@
-# Copyright 2020-2025 The MathWorks, Inc.
+# Copyright 2020-2026 The MathWorks, Inc.
 
 import asyncio
 import datetime
@@ -17,6 +17,7 @@ from multidict import CIMultiDict
 import tests.unit.test_constants as test_constants
 from matlab_proxy import app, util
 from matlab_proxy.app import matlab_view
+from matlab_proxy.util import system as mwi_sys
 from matlab_proxy.util.mwi import environment_variables as mwi_env
 from matlab_proxy.util.mwi.exceptions import EntitlementError, MatlabInstallError
 from tests.unit.fixtures.fixture_auth import (
@@ -48,7 +49,7 @@ def test_configure_no_proxy_in_env(monkeypatch, no_proxy_user_configuration):
     monkeypatch.setenv("no_proxy", no_proxy_user_configuration)
 
     # This function will modify the environment variables to include 0.0.0.0, localhost & 127.0.0.1
-    app.configure_no_proxy_in_env()
+    mwi_sys.configure_no_proxy_in_env()
 
     import os
 
