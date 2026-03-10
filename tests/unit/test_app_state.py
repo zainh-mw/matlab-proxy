@@ -858,12 +858,12 @@ async def test_decrement_timer_runs_out(sample_settings_fixture, mocker):
 
     # Act
     # Wait for a little more time than idle_timeout to decrease flakiness of this test on different platforms.
-    # MATLAB state is set to 'stopping' by stop_matlab() which is called once the decrement timer runs out.
+    # MATLAB state is set to 'down' by stop_matlab() which is called once the decrement timer runs out.
     await asyncio.sleep(idle_timeout * FIVE_MAX_TRIES)
 
     # Assert
     assert not mock_loop.is_running()
-    assert app_state.get_matlab_state() == "stopping"
+    assert app_state.get_matlab_state() == "down"
 
     # Cleanup
     mock_loop.stop()

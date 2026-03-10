@@ -489,7 +489,7 @@ async def test_stop_matlab_route(test_server):
 
     # Assert
     # Check if Matlab restarted successfully
-    await __check_for_matlab_status(test_server, "stopping")
+    await __check_for_matlab_status(test_server, "down")
 
 
 async def test_root_redirect(test_server):

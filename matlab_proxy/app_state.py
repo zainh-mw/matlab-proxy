@@ -635,30 +635,27 @@ class AppState:
         if not matlab_ready_file:
             await self.matlab_state_updater_lock.acquire()
 
-            if (
-                not matlab_ready_file
-            ):  # Double check that matlab_ready_file is truthy before invoking set_matlab_state()
+            # Double check that matlab_ready_file is truthy before invoking set_matlab_state()
+            if not matlab_ready_file:
                 self.set_matlab_state("down")
                 await self.matlab_state_updater_lock.release()
-                return
+                return None
 
-            else:
-                await self.matlab_state_updater_lock.release()
-                return
+            await self.matlab_state_updater_lock.release()
+            return None
 
         # If the matlab_ready_file path is constructed and is not yet created by the embedded connector.
         if matlab_ready_file and not matlab_ready_file.exists():
             await self.matlab_state_updater_lock.acquire()
-            if (
-                matlab_ready_file and not matlab_ready_file.exists()
-            ):  # Double check that matlab_ready_file is truthy and exists before invoking set_matlab_state()
+
+            # Double check that matlab_ready_file is truthy and exists before invoking set_matlab_state()
+            if matlab_ready_file and not matlab_ready_file.exists():
                 self.set_matlab_state("starting")
                 await self.matlab_state_updater_lock.release()
-                return
+                return None
 
-            else:
-                await self.matlab_state_updater_lock.release()
-                return
+            await self.matlab_state_updater_lock.release()
+            return None
 
         # Proceed to query the Embedded Connector about its state and update MATLAB and its 'busy' state.
 
@@ -1458,7 +1455,7 @@ class AppState:
             if session_file_path is not None:
                 self.matlab_session_files[session_file_name] = None
                 with contextlib.suppress(FileNotFoundError):
-                    logger.debug(f"Deleting:{session_file_path}")
+                    logger.debug("Deleting: %s", session_file_path)
                     session_file_path.unlink()
 
         # In posix systems, variable matlab is an instance of asyncio.subprocess.Process()
@@ -1499,7 +1496,7 @@ class AppState:
                     except Exception as err:
                         log_error(logger, err)
                         logger.info(
-                            "Failed to stop MATLAB gracefully. Attempting to terminate the process."
+                            "Failed to stop MATLAB gracefully, terminating the process."
                         )
                         try:
                             matlab.terminate()
@@ -1536,13 +1533,16 @@ class AppState:
                         except Exception as err:
                             log_error(logger, err)
                             logger.info(
-                                "Failed to stop MATLAB gracefully. Attempting to terminate the process."
+                                "Failed to stop MATLAB gracefully, terminating the process."
                             )
                             try:
                                 matlab.terminate()
                                 matlab.wait()
-                            except:
-                                pass
+                            except Exception as e:
+                                logger.debug(
+                                    "Received an exception while terminating matlab: %s",
+                                    e,
+                                )
 
         logger.debug("Stopped (any running) MATLAB process.")
 
@@ -1550,7 +1550,7 @@ class AppState:
         if system.is_posix():
             xvfb = self.processes["xvfb"]
             if xvfb is not None and xvfb.returncode is None:
-                logger.debug(f"Terminating Xvfb (PID={xvfb.pid})")
+                logger.debug("Terminating Xvfb (PID=%d)", xvfb.pid)
                 xvfb.terminate()
                 waiters.append(xvfb.wait())
 
@@ -1559,6 +1559,7 @@ class AppState:
             for waiter in waiters:
                 await waiter
 
+        self.set_matlab_state("down")
         # Release lock for the __update_matlab_state task to determine MATLAB state.
         await self.matlab_state_updater_lock.release()
 
