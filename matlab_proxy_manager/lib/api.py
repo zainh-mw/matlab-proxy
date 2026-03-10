@@ -1,4 +1,4 @@
-# Copyright 2024-2025 The MathWorks, Inc.
+# Copyright 2024-2026 The MathWorks, Inc.
 import asyncio
 import os
 import secrets
@@ -241,7 +241,7 @@ def _prepare_cmd_and_env_for_matlab_proxy(client_id: str, base_url_prefix: str):
     """
     # Get config from matlab_proxy module if jupyter_matlab_proxy module is not available
     try:
-        from jupyter_matlab_proxy import config
+        from jupyter_matlab_proxy.jupyter_config import config
     except ImportError:
         from matlab_proxy.default_configuration import config
 
