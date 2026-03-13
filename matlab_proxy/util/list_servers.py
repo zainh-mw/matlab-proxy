@@ -1,15 +1,16 @@
-# Copyright (c) 2020-2025 The MathWorks, Inc.
+# Copyright 2020-2026 The MathWorks, Inc.
 # Script to print information about all running matlab-proxy servers for current user on current machine.
 
 import glob
+import json
 import os
+from datetime import datetime
+
+from rich.console import Console
+from rich.table import Table
 
 import matlab_proxy.settings as mwi_settings
 import matlab_proxy.util as mwi_util
-
-from datetime import datetime
-from rich.console import Console
-from rich.table import Table
 
 __NO_SERVERS_MSG = "No MATLAB-PROXY Servers are currently running."
 
@@ -84,6 +85,19 @@ def print_server_info():
             with open(server) as f:
                 server_info = f.readline().strip()
                 print(f"{server_info}", end="\n")
+    elif args["json"]:
+        server_list = []
+        for server in servers:
+            timestamp, matlab_version, session_name, address = _get_server_info(server)
+            server_list.append(
+                {
+                    "created_on": timestamp,
+                    "matlab_version": matlab_version,
+                    "session_name": session_name,
+                    "server_url": address,
+                }
+            )
+        print(json.dumps(server_list, indent=2))
     else:
         _print_server_info_as_table(servers)
     return

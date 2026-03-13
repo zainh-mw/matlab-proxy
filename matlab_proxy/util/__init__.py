@@ -1,10 +1,9 @@
-# Copyright 2020-2025 The MathWorks, Inc.
+# Copyright 2020-2026 The MathWorks, Inc.
 import argparse
+import asyncio
 import inspect
-import os
 import socket
 import time
-
 from pathlib import Path
 
 import matlab_proxy
@@ -12,11 +11,8 @@ from matlab_proxy.util import mwi, system
 from matlab_proxy.util.event_loop import *
 from matlab_proxy.util.mwi import environment_variables as mwi_env
 from matlab_proxy.util.mwi.exceptions import (
-    UIVisibleFatalError,
-)
-
-from matlab_proxy.util.mwi.exceptions import (
     LockAcquisitionError,
+    UIVisibleFatalError,
 )
 
 logger = mwi.logger.get()
@@ -70,9 +66,17 @@ def parse_list_cli_args():
         help="Return the server list without any additional text.",
         action="store_true",
     )
+
+    parser.add_argument(
+        "-j",
+        "--json",
+        help="List of servers in JSON format.",
+        action="store_true",
+    )
     args = parser.parse_args()
 
     parsed_args["quiet"] = args.quiet
+    parsed_args["json"] = args.json
 
     return parsed_args
 
@@ -211,7 +215,7 @@ def get_child_processes(parent_process, max_attempts=10, sleep_interval=1):
 
     if not child_processes:
         logger.debug(
-            f"MATLAB process was not found while searching for the child processes."
+            "MATLAB process was not found while searching for the child processes."
         )
 
         raise UIVisibleFatalError(
